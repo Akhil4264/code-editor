@@ -1,15 +1,13 @@
-// src/App.js
 import React from 'react';
+import './App.css'; // Assuming you have a CSS file for App styling
 import CodeEditor from './components/CodeEditor';
-import Code from './components/Code';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Simple Code Editor</h1>
+        <h1 style={{color : "white"}} >Simple Code Editor</h1>
         <CodeEditor />
-        {/* <Code/> */}
       </header>
     </div>
   );

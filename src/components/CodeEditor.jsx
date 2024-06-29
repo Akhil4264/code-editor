@@ -49,7 +49,7 @@ const SyntaxHighlightingEditor = () => {
   };
 
   return (
-    <div style={{ position: 'relative', height: 'auto', width: '600px' }}>
+    <div style={{ position: 'relative', height: 'auto', width: '600px',margin:'auto' }}>
       <textarea
         ref={textAreaRef}
         id="editing"
@@ -70,11 +70,13 @@ const SyntaxHighlightingEditor = () => {
 };
 
 const textAreaStyle = {
+  backgroundColor: '#fff',
   margin: '10px',
   padding: '10px',
   border: 0,
+  borderRadius:4,
   width: '100%',
-  height: '300px', // Set fixed height
+  height: '500px', // Set fixed height
   fontSize: '12pt',
   fontFamily: 'monospace',
   lineHeight: 1.5,
@@ -94,11 +96,13 @@ const textAreaStyle = {
 };
 
 const highlightingStyle = {
+  backgroundColor: '#fff',
   margin: '10px',
   padding: '10px',
   border: 0,
+  borderRadius:4,
   width: '100%',
-  height: '300px', // Set fixed height
+  height: '500px', // Set fixed height
   position: 'absolute',
   top: 0,
   left: 0,
