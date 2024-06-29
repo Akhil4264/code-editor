@@ -1,21 +1,19 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Prism from 'prismjs';
-import 'prismjs/themes/prism.css'; // Include Prism CSS for styling
+import 'prismjs/themes/prism.css';
 
 const SyntaxHighlightingEditor = () => {
-  const [text, setText] = useState('');
-  const [language, setLanguage] = useState('javascript'); // Default language
+  const [text, setText] = useState('//Syntax highlighter for javascript\n\n// Enter your code');
+  const [language, setLanguage] = useState('javascript');
   const textAreaRef = useRef(null);
   const highlightingRef = useRef(null);
 
   useEffect(() => {
-    // Syntax highlight the code
-    Prism.highlightElement(highlightingRef.current);
+    Prism.highlightAllUnder(highlightingRef.current);
   }, [text, language]);
 
   const handleInputChange = (event) => {
     let value = event.target.value;
-    // Handle final newlines
     if (value[value.length - 1] === '\n') {
       value += ' ';
     }
@@ -31,25 +29,20 @@ const SyntaxHighlightingEditor = () => {
 
   const handleKeyDown = (event) => {
     if (event.key === 'Tab') {
-      event.preventDefault(); // stop normal tab behavior
+      event.preventDefault();
       const textarea = textAreaRef.current;
       const start = textarea.selectionStart;
       const end = textarea.selectionEnd;
       const newValue = text.substring(0, start) + '\t' + text.substring(end);
       setText(newValue);
-      // Move cursor
       setTimeout(() => {
         textarea.selectionStart = textarea.selectionEnd = start + 1;
       }, 0);
     }
   };
 
-  const handleLanguageChange = (event) => {
-    setLanguage(event.target.value);
-  };
-
   return (
-    <div style={{ position: 'relative', height: 'auto', width: '600px',margin:'auto' }}>
+    <div style={{ position: 'relative', height: 'auto', width: '600px', margin: 'auto' }}>
       <textarea
         ref={textAreaRef}
         id="editing"
@@ -60,8 +53,8 @@ const SyntaxHighlightingEditor = () => {
         onKeyDown={handleKeyDown}
         style={textAreaStyle}
       />
-      <pre id="highlighting" style={highlightingStyle}>
-        <code ref={highlightingRef} className={`language-${language}`} id="highlighting-content">
+      <pre id="highlighting" style={highlightingStyle} ref={highlightingRef}>
+        <code className={`language-${language}`} id="highlighting-content" >
           {text}
         </code>
       </pre>
@@ -70,13 +63,12 @@ const SyntaxHighlightingEditor = () => {
 };
 
 const textAreaStyle = {
-  backgroundColor: '#fff',
   margin: '10px',
   padding: '10px',
   border: 0,
-  borderRadius:4,
+  borderRadius: 4,
   width: '100%',
-  height: '500px', // Set fixed height
+  height: '500px',
   fontSize: '12pt',
   fontFamily: 'monospace',
   lineHeight: 1.5,
@@ -84,15 +76,14 @@ const textAreaStyle = {
   position: 'absolute',
   top: 0,
   left: 0,
+  zIndex: 1,
   background: 'transparent',
   color: 'transparent',
-  caretColor: 'red', // Change cursor color to red
-  whiteSpace: 'pre-wrap',
-  overflowWrap: 'break-word',
-  overflow: 'auto', // Enable auto-scrolling
-  zIndex: 1,
+  caretColor: 'red',
   outline: 'none',
-  resize: 'none', // Disable manual resizing
+  resize: 'none', 
+  whiteSpace: 'pre',
+  overflow: 'auto',
 };
 
 const highlightingStyle = {
@@ -100,18 +91,19 @@ const highlightingStyle = {
   margin: '10px',
   padding: '10px',
   border: 0,
-  borderRadius:4,
+  borderRadius: 4,
   width: '100%',
-  height: '500px', // Set fixed height
+  height: '500px',
+  fontFamily: 'monospace',
+  lineHeight: 1.5,
+  tabSize: 4,
   position: 'absolute',
   top: 0,
   left: 0,
-  pointerEvents: 'none',
-  whiteSpace: 'pre-wrap',
-  overflowWrap: 'break-word',
-  overflow: 'auto',
-  outline:'none',
+  outline: 'none',
   zIndex: 0,
+  whiteSpace: 'pre',
+  overflow: 'auto',
 };
 
 export default SyntaxHighlightingEditor;

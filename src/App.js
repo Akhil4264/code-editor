@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css'; // Assuming you have a CSS file for App styling
+import './App.css';
 import CodeEditor from './components/CodeEditor';
 
 function App() {
